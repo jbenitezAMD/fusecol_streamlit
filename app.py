@@ -1,12 +1,26 @@
 import streamlit as st
 import pandas as pd
 from introduction import intro
-from fusecol_intterface.run_fusecol import run_FuseCOL
+from run_fusecol import run_FuseCOL
 
-st.set_page_config(layout="wide")
+import streamlit as st
+
+st.set_page_config(
+    page_title="Ex-stream-ly Cool App",
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
+# st.set_page_config(layout="wide")
 
 page_names_to_funcs = {
-    "Introduction": intro,
+    # "Introduction": intro,
     "fuseCOL": run_FuseCOL,
     # "Mapping Demo": mapping_demo,
     # "DataFrame Demo": data_frame_demo
