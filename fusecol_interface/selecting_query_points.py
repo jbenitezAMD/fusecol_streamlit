@@ -1,13 +1,12 @@
 import dataiku
 import streamlit as st
 import pandas as pd 
+import amd_st
 
 def selecting_QuerPoints():
     query, proj = st.columns(2)
     project_handle = dataiku.api_client().get_project(dataiku.default_project_key())
     vars = project_handle.get_variables()['standard']
-    query_return_value = pd.DataFrame([[selected_opn, selcted_LotID, selcted_KDF, selcted_QueryID, selcted_LocalCSV, selcted_localKDF]], columns=queryType)
-
     queryType = vars['query_options']
 
     with query:
@@ -20,6 +19,8 @@ def selecting_QuerPoints():
         index = [index for index, project in enumerate(vars['configuration']) if selected_project == project['name']][0]
         focusProject = vars['configuration'][index]
 
+    query_return_value = pd.DataFrame([[selected_opn, selcted_LotID, selcted_KDF, selcted_QueryID, selcted_LocalCSV, selcted_localKDF]], columns=queryType)
+    
     selected_QueryType = query_return_value[input_queryType]
     
     return focusProject, selected_QueryType
