@@ -6,12 +6,13 @@ def submit_QueryPoints(focusProject, selectedQueryType):
 
     validationPoints = {
         'QuerySummary' : False,
+        'QueryType' : False,
     }
     st.write('## Validate and Submit Selected Query Parameters')
 
     # summary.update('Query Point Validation Complete', state = 'complete')
     # approveButton_Columns, disproveButton_Column = st.columns([1, 2])
-    with st.form('Validate Quer Points'):
+    with st.form('Validate Query Points'):
         st.sidebar.write('---\n## Submit Query Status\n')
         validated = st.sidebar.status('Validate Query Points', state='error')
         summary_QueryPoints(focusProject)
@@ -19,7 +20,15 @@ def submit_QueryPoints(focusProject, selectedQueryType):
         if validated_summary: 
             validationPoints['QuerySummary'] = True
             validated.update(state='complete')
-    st.write(selectedQueryType)
+    if selectedQueryType != '..': 
+        with st.form('Validate Query Type'): 
+            st.sidebar.write('## Submit Query Type\n')
+            summary_QueryType(summary_QueryType)
+            validated_testQuery = st.sidebar.status('Validate Query Type', state='error')
+            validated_query = st.form_submit_button('Approve')
+            if validated_query: 
+                validationPoints['QueryType'] = True
+                validated_testQuery.update(state = 'complete')
 
 
 def summary_QueryPoints(focusProject): 
@@ -35,3 +44,5 @@ def summary_QueryPoints(focusProject):
         st.dataframe(data=pd.DataFrame(focusProject['WS2']), hide_index = True, use_container_width = True)
         st.write(f'## {textPoints[4]}')
         st.dataframe(data=pd.DataFrame(focusProject['WS1']), hide_index = True, use_container_width = True)
+def summary_QueryType(selectedQueryType): 
+    st.write(selectedQueryType)
