@@ -23,7 +23,7 @@ def submit_QueryPoints(focusProject, selectedQueryType):
     if selectedQueryType != '..': 
         with st.form('Validate Query Type'): 
             st.sidebar.write('## Submit Query Type\n')
-            summary_QueryType(summary_QueryType)
+            summary_QueryType(selectedQueryType)
             validated_testQuery = st.sidebar.status('Validate Query Type', state='error')
             validated_query = st.form_submit_button('Approve')
             if validated_query: 
