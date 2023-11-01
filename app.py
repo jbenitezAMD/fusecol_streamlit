@@ -18,7 +18,7 @@ from run_fusecol import run_FuseCOL
 st.set_page_config(layout="wide")
 
 page_names_to_funcs = {
-    "Introduction": intro,
+    # "Introduction": intro,
     "fuseCOL": run_FuseCOL,
     # "Mapping Demo": mapping_demo,
     # "DataFrame Demo": data_frame_demo
